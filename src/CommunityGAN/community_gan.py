@@ -28,7 +28,7 @@ class CommunityGAN(object):
         pickle.dump(self.graph, open(config.cache_filename_prefix + '.graph.pkl', 'wb'))
         pickle.dump(self.graph.id2nid, open(config.cache_filename_prefix + '.neighbor.pkl', 'wb'))
         pickle.dump(self.graph.motifs, open(config.cache_filename_prefix + '.motifs.pkl', 'wb'))
-        print(self.graph.n_node)
+        # print(self.graph.n_node)
 
         print("reading initial embeddings...")
         self.node_embed_init_d = utils.read_embeddings_with_id_convert(filename=config.pretrain_emb_filename_d,
@@ -70,7 +70,7 @@ class CommunityGAN(object):
     def train(self):
 
         self.write_embeddings_to_file()
-        self.evaluation(self, pre_train=False)
+        self.evaluation(self, pre_train=True)
 
         print("start training...")
         for epoch in range(config.n_epochs):
